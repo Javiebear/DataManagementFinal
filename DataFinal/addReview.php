@@ -52,8 +52,7 @@ ini_set('display_errors', 1);
         $rating_score = $_POST['rating_score'];
         $descriptions = $_POST['descriptions'];
 
-        if(!empty($r_id) && !empty($rating_score) && !empty($descriptions) &&
-        !empty($s_id) && !empty($b_id)){
+        if(!empty($rating_score) && !empty($descriptions)){
             $q = "INSERT INTO REVIEW( rating_score, descriptions, s_id, b_id) 
             VALUES ('$rating_score', '$descriptions', '$s_id', '$b_id')";
 
