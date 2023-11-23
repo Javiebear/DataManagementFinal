@@ -20,7 +20,7 @@ ini_set('display_errors', 1);
         }
         
         //go to login if not logged in
-        header("Location: userSelection.php");
+        header("location: search.php");
         die;
     }
 
