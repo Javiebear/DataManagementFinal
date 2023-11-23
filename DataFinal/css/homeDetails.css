@@ -1,0 +1,85 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width:100vw;
+    background-image: url('../imgs/building.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(5px);
+    z-index: -1;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+  }
+  .content-container-two {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+  }
+
+  .container {
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.98);
+    padding: 30px;
+    border-radius: 5px;
+    max-width: 1000px; 
+    align-items: center; 
+    display: flex; 
+}
+.container img {
+    width: 250px;
+    margin-bottom: 20px;
+  }
+
+.container h1, .container p {
+    margin: 10px 0;
+}
+
+/*addReview.php*/
+
+.formEntries{
+    padding: 0.75vh;
+}
+.submit{
+    display: flex;
+    justify-content: center;
+
+}
+.btn {
+    background-color: #EEE;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-style: ridge;
+    border-color: EAE;
+    border-radius: 5px;
+    color: black;
+  }

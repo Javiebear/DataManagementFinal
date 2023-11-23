@@ -1,0 +1,75 @@
+body{
+    background-image: url("../imgs/house.jpeg");
+    display: flex;
+    align-items: right;
+    justify-content: right;
+    height: fit-content;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:25%;
+    padding:5%;
+}
+
+.regBox{
+    color: Black;
+    background-color: white;
+    box-shadow: 6px 6px 10px black;
+    width: 85%;
+    height:98vh;
+    opacity: 0.95;
+}
+
+.center{
+    height: 95vh;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+}
+
+.formEntries{
+    padding: 0.75vh;  
+}
+
+a{
+    size: 10%;
+    color: blue;
+}
+
+a:hover {
+    text-decoration: none;
+    color: blueviolet;
+}
+
+.submit{
+    display: flex;
+    justify-content: center;
+
+}
+
+.hugleft{
+    align-items: left;
+}
+
+.hugright{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+}
+
+input{
+    width: 100%;
+}
+
+form{
+    width: 50%;
+}
