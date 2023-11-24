@@ -6,6 +6,9 @@ ini_set('display_errors', 1);
 
     session_start();
 
+    include "updateViews.php";
+    updateView();
+
     //connecting to the database
     $dbhost = "localhost";
     $dbuser = "root";
@@ -32,7 +35,7 @@ ini_set('display_errors', 1);
             $q = "INSERT INTO LANDLORD (username, password, fname, lname,
             phone_num, email) 
             VALUES ('$username', '$password','$fname', '$lname', 
-            '$phone_num', '$email')";
+            '$phonenum', '$email')";
 
             mysqli_query($con, $q);
 
@@ -106,4 +109,4 @@ ini_set('display_errors', 1);
         </div>
     </div>
 </body>
-
+</html>
