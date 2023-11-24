@@ -12,6 +12,9 @@ ini_set('display_errors', 1);
     $dbpass = "";
     $dbname = "STUDENTRENT";
 
+    include "updateViews.php";
+    updateView();
+
 
     if(!$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)){
         die("error: could not connect to database");
@@ -37,7 +40,7 @@ ini_set('display_errors', 1);
             $q = "INSERT INTO STUDENT (username, password, fname, lname, date_of_birth,
             phone_num, address, email, program, uni) 
             VALUES ('$username', '$password','$fname', '$lname', '$date_of_birth',
-            '$phone_num', '$address', '$email', '$program', '$uni')";
+            '$phonenum', '$address', '$email', '$program', '$uni')";
 
             mysqli_query($con, $q);
 
@@ -136,4 +139,4 @@ ini_set('display_errors', 1);
         </div>
     </div>
 </body>
-
+</html>
