@@ -32,6 +32,9 @@ session_start();
         die("error: could not connect to database");
     }
     
+    include "updateViews.php";
+    updateView();
+
     $tuple = check_login($con);
 
     $b_id = 0;
@@ -133,7 +136,7 @@ session_start();
                 <p>&emsp;Parking: <?php echo($parking) ?></p>
                 <hr>
                 <p>&emsp;Review average: <?php echo($rounded_avg);?></p>
-                <a class="btn" href="search.php" style="padding:2px 10px;margin-left: 460px; ">Back</a>
+                <a class="btn" href="landlord.php" style="padding:2px 10px;margin-left: 460px; ">Back</a>
             </div>
         </div>
         <br>
