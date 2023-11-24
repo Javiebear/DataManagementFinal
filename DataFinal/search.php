@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +27,7 @@
 
 
     <div class="label">
-        <h1 style="color: #FFFFFF;"> Your Listings: </h1>
+        <h1 style="color: #FFFFFF;"> Matched Listing: </h1>
     </div>
     <div class="searched">
     <?php
@@ -38,6 +36,9 @@
             ini_set('display_errors', 1);
 
             session_start();
+
+            include "updateViews.php";
+            updateView();
 
             if(isset($_SESSION['b_id'])){
                 unset($_SESSION['b_id']);
@@ -273,8 +274,6 @@
 
                     $viewAmount = 0;
                 }
-                
-
                 
                 //get the first image of the building
                 $q = "SELECT img_bin FROM BUILDING_IMGS WHERE b_id = '$b_id'";
