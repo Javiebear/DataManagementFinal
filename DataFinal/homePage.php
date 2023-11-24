@@ -27,6 +27,9 @@ session_start();
         die;
     }
 
+    include "updateViews.php";
+    updateView();
+
     //connecting to the database
     $dbhost = "localhost";
     $dbuser = "root";
@@ -207,12 +210,8 @@ session_start();
                 <h2>University of Toronto</h2>
                 <h4><?php echo($toronto); ?></h4>
                 <h5>below average rent: <br><?php echo($toronto2); ?></h5>
-
-
             </div>
-
         </div>
-
     </div>
 </body>
 </html>
