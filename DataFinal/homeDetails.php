@@ -5,6 +5,9 @@ ini_set('display_errors', 1);
 
 session_start();
 
+    include "updateViews.php";
+    updateView();
+
     //check if there is an exisint student id being used within this session
     function check_login($con){
         if(isset($_SESSION['s_id'])){
@@ -45,10 +48,11 @@ session_start();
     $s_id = $tuple['s_id'];
 
     //checking if the user was already added to the viewed table
-    $q = "SELECT * FROM VIEWED WHERE s_id = '$s_id' AND b_id = '$b_id'";
+    $q = "SELECT * FROM VIEWED WHERE s_id = '$s_id'";
 
     $result = mysqli_query($con, $q);
     $viewedArr = [];
+    $alreadyViewed = false;
 
     if($result){
         while ($tuple = mysqli_fetch_assoc($result)) {
@@ -56,16 +60,20 @@ session_start();
         }
     }
 
-    //if there was no elements
-    if (count($viewedArr) == 0){
+    foreach($viewedArr as $viewed){
+        if ($viewed['b_id'] == $b_id){
+            $alreadyViewed = true;
+        }
+    }
+
+    //if there are no duplicate houses
+    if ($alreadyViewed == false){
         //adding the view history for the student
         $q = "INSERT INTO VIEWED (s_id, b_id)
         VALUES ('$s_id', '$b_id')";
 
         mysqli_query($con, $q);
     }
-
-
 
     //getting data for building
     $q = "SELECT * FROM BUILDING_DESCRIPTION WHERE b_id = '$b_id' limit 1";
@@ -74,7 +82,7 @@ session_start();
     if($result && mysqli_num_rows($result) > 0){
         $building = mysqli_fetch_assoc($result);
     }
-
+    
     $address = $building['address'];
     $rent = $building['rent'];
     $description = $building['description'];
@@ -96,11 +104,18 @@ session_start();
     $q = "SELECT * FROM AVG_RATING WHERE address = '$address' limit 1";
     $result = mysqli_query($con, $q);
     $review = [];
+    $rounded_avg = "N/A";
+
     if($result && mysqli_num_rows($result) > 0){
         $review = mysqli_fetch_assoc($result);
     }
-    $review_avg = $review['avg_Rate'];
-    $rounded_avg = round($review_avg, 2);
+
+    //checking if there are any reviews on this building
+    if(count($review) != 0){
+        $review_avg = $review['avg_Rate'];
+        $rounded_avg = round($review_avg, 2);
+    }
+
 
     //get the first image of the building
     $q = "SELECT img_bin FROM BUILDING_IMGS WHERE b_id = '$b_id'";
@@ -165,7 +180,7 @@ session_start();
         <div class="container">
             <div>
                 <h4>Reviews
-                <?php echo("Add a review:<a href='addReview.php?b_id={$b_id}' style='text-decoration: none;'>");?>
+                <?php echo("<a href='addReview.php?b_id={$b_id}' style='text-decoration: none;'>");?>
                 <button style="float: right; margin-left: 5px;">+</button></a></h4>
                 <hr>
                 <?php
