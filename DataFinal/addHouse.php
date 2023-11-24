@@ -14,7 +14,9 @@ ini_set('display_errors', 1);
     if(!$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)){
         die("error: could not connect to database");
     }
-
+    
+    include "updateViews.php";
+    updateView();
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -79,6 +81,7 @@ ini_set('display_errors', 1);
             
                 mysqli_query($con, $q3);
             }
+
 
             header("Location: landlord.php");
             die;
@@ -218,3 +221,4 @@ ini_set('display_errors', 1);
         </div>
     </div>
 </body>
+</html>
