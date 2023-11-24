@@ -5,6 +5,9 @@ ini_set('display_errors', 1);
 
 session_start();
 
+    include "updateViews.php";
+    updateView();
+
     //check if there is an exisint student id being used within this session
     function check_login($con){
         if(isset($_SESSION['l_id'])){
