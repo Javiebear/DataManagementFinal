@@ -6,6 +6,9 @@
 
     session_start();
 
+    include "updateViews.php";
+    updateView();
+
     //connecting to the database
     $dbhost = "localhost";
     $dbuser = "root";
@@ -84,5 +87,3 @@
     </div>
 </body>
 </html>
-
-
