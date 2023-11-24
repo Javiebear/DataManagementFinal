@@ -21,6 +21,8 @@ ini_set('display_errors', 1);
         die;
     }
 
+    include "updateViews.php";
+    updateView();
 
     //connecting to the database
     $dbhost = "localhost";
