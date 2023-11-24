@@ -5,6 +5,9 @@ ini_set('display_errors', 1);
 
     session_start();
 
+    include "updateViews.php";
+    updateView();
+
     //check if there is an exisint student id being used within this session
     function check_login($con){
         if(isset($_SESSION['s_id'])){
@@ -20,7 +23,7 @@ ini_set('display_errors', 1);
         }
         
         //go to login if not logged in
-        header("location: search.php");
+        header("Location: userSelection.php");
         die;
     }
 
@@ -45,25 +48,6 @@ ini_set('display_errors', 1);
     }
 
     $s_id = $tuple['s_id'];
-
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-        //getting all the values
-        $rating_score = $_POST['rating_score'];
-        $descriptions = $_POST['descriptions'];
-
-        if(!empty($rating_score) && !empty($descriptions)){
-            $q = "INSERT INTO REVIEW( rating_score, descriptions, s_id, b_id) 
-            VALUES ('$rating_score', '$descriptions', '$s_id', '$b_id')";
-
-
-            mysqli_query($con, $q);
-            header("Location: homeDetails.php");
-            }
-             else{
-            echo "Something is missing";
-        }
-    }
     
     //get the first image of the building
     $q = "SELECT img_bin FROM BUILDING_IMGS WHERE b_id = '$b_id'";
@@ -75,6 +59,26 @@ ini_set('display_errors', 1);
     }
 
     $img = $imgArray[0];
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+        //getting all the values
+        $rating_score = $_POST['rating_score'];
+        $descriptions = $_POST['descriptions'];
+
+        if(!empty($rating_score) && !empty($descriptions)){
+            $q = "INSERT INTO REVIEW ( rating_score, descriptions, s_id, b_id) 
+            VALUES ('$rating_score', '$descriptions', '$s_id', '$b_id')";
+
+
+            mysqli_query($con, $q);
+            header("location: search.php");
+            die;
+        }else{
+            echo "Something is missing";
+        }
+        
+    }
 
 ?>
 <!DOCTYPE html>
@@ -93,11 +97,11 @@ ini_set('display_errors', 1);
                         <label><center>Student Rent Review:</center></label><br>                   
 
             <div>
-                <form  method="post" action="addReview.php" enctype="multipart/form-data">
+                <form method="post" action="">
                     
                     <div class="formEntries">
                         <label for="rating_score">Rating 0-10:   </label>
-                        <input type="text" id="rating_score" name="rating_score"><br>                        
+                        <input type="text" name="rating_score"><br>                        
                     </div>
                     <div class="formEntries">
                         <label for="rating_score">Review:   </label>
